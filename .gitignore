@@ -1,4 +1,6 @@
 .vscode/
+**/__pycache__
+**/result_sample.py_sample/
 assemblyline-service-XLMMacroDeobfuscator/
 assemblyline-service-ancestry/
 assemblyline-service-antivirus/

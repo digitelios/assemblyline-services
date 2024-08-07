@@ -12,7 +12,12 @@ env:
 jobs:
   push_to_registry:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -23,8 +28,14 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
+          username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: digitelios/assemblyline-service-diec
 
       - name: Set build variables
         run: |
@@ -42,7 +53,7 @@ jobs:
         with:
           context: .
           file: assemblyline-service-diec/Dockerfile
-          push: ${{ contains(github.ref, 'ref/tags/v') }}
+          push: true
           build-args: |
             version=${{ env.BUILD_TAG }}
             branch=${{ env.BUILD_TYPE }}
@@ -50,3 +61,10 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.BUILD_TAG }}
             ${{ env.IMAGE_NAME }}:${{ env.BUILD_TYPE }}
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-digest: ${{ steps.build-and-push.outputs.digest }}
+          push-to-registry: true
