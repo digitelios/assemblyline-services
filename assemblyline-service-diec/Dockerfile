@@ -17,6 +17,6 @@ RUN dpkg -i diec.deb || true
 RUN apt -f -y install
 # Patch version in manifest
 ARG version=4.2.0.dev1
-RUN sed -i -e "s/\$SERVICE_TAG/$version/g" service_manifest.yml
+#RUN sed -i -e "s/\$SERVICE_TAG/$version/g" service_manifest.yml
 
 USER assemblyline
