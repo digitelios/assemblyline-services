@@ -11,6 +11,7 @@ COPY . .
 USER root
 # Install any service dependencies here
 RUN apt-get -y update
+RUN apt-get install wget
 RUN wget https://github.com/horsicq/DIE-engine/releases/download/3.09/die_3.09_Ubuntu_20.04_amd64.deb -O diec.deb
 RUN dpkg -i diec.deb
 RUN apt -f install
