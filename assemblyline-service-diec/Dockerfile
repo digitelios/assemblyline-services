@@ -13,7 +13,7 @@ USER root
 RUN apt-get -y update
 RUN apt-get install wget
 RUN wget https://github.com/horsicq/DIE-engine/releases/download/3.09/die_3.09_Ubuntu_20.04_amd64.deb -O diec.deb
-RUN dpkg -i diec.deb
+RUN dpkg -i diec.deb || true
 RUN apt -f install
 # Patch version in manifest
 ARG version=4.2.0.dev1
