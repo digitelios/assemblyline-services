@@ -2,7 +2,7 @@ FROM cccs/assemblyline-v4-service-base:latest
 
 # Python path to the service class from your service directory
 #  The following example refers to the class "Sample" from the "result_sample.py" file
-ENV SERVICE_PATH result_sample.diec
+ENV SERVICE_PATH diec.Diec
 
 # Copy Sample service code
 WORKDIR /opt/al_service
