@@ -41,6 +41,7 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: .
+          file: ../../assemblyline-service-sample/Dockerfile
           push: ${{ contains(github.ref, 'ref/tags/v') }}
           build-args: |
             version=${{ env.BUILD_TAG }}
