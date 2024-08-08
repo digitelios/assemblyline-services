@@ -1,4 +1,4 @@
-FROM cccs/assemblyline-v4-service-base:stable
+FROM cccs/assemblyline-v4-service-base:4.2.0.stable112
 
 # Python path to the service class from your service directory
 #  The following example refers to the class "Sample" from the "result_sample.py" file
