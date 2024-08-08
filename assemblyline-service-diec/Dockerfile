@@ -5,7 +5,7 @@ FROM cccs/assemblyline-v4-service-base:latest
 ENV SERVICE_PATH result_sample.diec
 
 # Install any service dependencies here
-RUN apt update
+RUN apt-get -y update
 RUN wget https://github.com/horsicq/DIE-engine/releases/download/3.09/die_3.09_Ubuntu_20.04_amd64.deb -O diec.deb
 RUN dpkg -i diec.deb
 RUN apt -f install
