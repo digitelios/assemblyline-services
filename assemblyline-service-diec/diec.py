@@ -11,20 +11,17 @@ class Diec(ServiceBase):
         self.log.info(f"start() from {self.service_attributes.name} service called")
 
     def execute(self, request: ServiceRequest) -> None:
-        # 1. Create a result object where all the result sections will be saved to
         result = Result()
+        output = ''
 
         try:
-            output = subprocess.check_output('diec', shell=True, text=True)
+            output = subprocess.check_output('diec ' + request._file_path + request.file_name, shell=True, text=True)
         except subprocess.CalledProcessError as e:
             self.log.error(f"Error executing diec: {e}")
 
-        # 2. Create a section to be displayed for this result
-        # 3. Make sure you add your section to the result
         if output:
-            text_section = ResultSection(str(output))
-
+            text_section = ResultSection('Detect it Easy')
+            text_section.add_lines(str(output))
             result.add_section(text_section)
 
-        # 4. Wrap-up: Save your result object back into the request
         request.result = result
