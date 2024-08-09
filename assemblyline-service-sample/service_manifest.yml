@@ -36,6 +36,6 @@ heuristics:
 #  - the name of the docker container that will be created
 #  - CPU and ram allocation by the container
 docker_config:
-  image: ${REGISTRY}digitelios/assemblyline-services/assemblyline-service-sample:$SERVICE_TAG
+  image: ${REGISTRY}digitelios/assemblyline-services:$SERVICE_TAG
   cpu_cores: 1.0
   ram_mb: 1024
