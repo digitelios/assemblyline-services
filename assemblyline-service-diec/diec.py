@@ -5,7 +5,7 @@ import subprocess
 
 class Diec(ServiceBase):
     def __init__(self, config=None):
-        super(Diec, self).__init__(config)
+        super().__init__(config)
 
     def start(self):
         self.log.info(f"start() from {self.service_attributes.name} service called")
@@ -15,7 +15,7 @@ class Diec(ServiceBase):
         output = ''
 
         try:
-            output = subprocess.check_output('diec ' + request._file_path + request.file_name, shell=True, text=True)
+            output = subprocess.run(f"diec {request._file_path}", text=True, capture_output=True, shell=True)
         except subprocess.CalledProcessError as e:
             self.log.error(f"Error executing diec: {e}")
 

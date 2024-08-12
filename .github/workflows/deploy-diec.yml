@@ -6,7 +6,6 @@ on:
 
 env:
   REGISTRY: docker.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: digitelios/assemblyline-service-diec
 
 jobs:

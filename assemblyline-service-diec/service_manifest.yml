@@ -1,5 +1,5 @@
 name: Diec
-version: 4.5.0.dev0
+version: $SERVICE_TAG
 description: Detect It Easy is a program for determining types of files for Windows, Linux and MacOS.
 
 # Regex defining the types of files the service accepts and rejects
@@ -16,8 +16,16 @@ file_required: true
 timeout: 60
 
 enabled: true
+is_external: false
+
+heuristics:
+  - description: This is a demo heuristic
+    filetype: "*"
+    heur_id: 1
+    name: Demo
+    score: 100
 
 docker_config:
-  image: ${REGISTRY}digitelios/assemblyline-service-diec:4.5.0.dev0
+  image: ${REGISTRY}digitelios/assemblyline-service-diec:$SERVICE_TAG
   cpu_cores: 1.0
   ram_mb: 1024
