@@ -5,7 +5,8 @@ FROM cccs/assemblyline-v4-service-base:$branch
 ENV SERVICE_PATH diec.Diec
 
 # Install any service dependencies here
-RUN apt-get -y update && apt-get install -y wget
+RUN apt-get update
+RUN apt-get install -y wget
 RUN wget https://github.com/horsicq/DIE-engine/releases/download/3.09/die_3.09_Ubuntu_20.04_amd64.deb -O diec.deb
 RUN dpkg -i diec.deb || true
 RUN apt-get -f -y install
