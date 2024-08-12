@@ -1,4 +1,5 @@
 .vscode/
+**/*.swp
 **/__pycache__
 **/result_sample.py_sample/
 assemblyline-service-XLMMacroDeobfuscator/
